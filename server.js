@@ -8,7 +8,7 @@ const cors = require("cors");
 const bodyParser = require('body-parser');
 const { useApitally } = require("apitally/express");
 const Queue = require('bull');
-const redisClient = require('./config/redis.js'); // Adjust the path based on your file structure
+// const redisClient = require('./config/redis.js'); // Adjust the path based on your file structure
 require("dotenv").config();
 
 require('./clean.js');
@@ -72,12 +72,12 @@ useApitally(app, {
 
 
 // Set up Redis session store
-const sessionStore = new RedisStore({ client: redisClient });
+// const sessionStore = new RedisStore({ client: redisClient });
 
 // Session middleware
 const MAX_AGE = 1000 * 60 * 60 * 3; // Three hours
 app.use(session({
-    store: sessionStore,
+    // store: sessionStore,
     secret: SESS_SECRET,
     saveUninitialized: true,
     cookie: { maxAge: MAX_AGE },

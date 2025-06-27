@@ -2,7 +2,7 @@ const { errReturned, sendResponse } = require('../../lib/utils/dto');
 const Campaign = require('../../lib/schema/campaign.schema'); 
 const moment = require('moment');
 // Import the Redis client
-const redisClient = require("../../config/redis");
+// const redisClient = require("../../config/redis");
 
 
 exports.createCampaign = async (req, res) => {
@@ -188,7 +188,7 @@ exports.updateCampaign = async (req, res) => {
   try {
     const updatedCampaign = await Campaign.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!updatedCampaign) return errReturned(res, "Campaign not found.");
-    await redisClient.del('all_campaigns');
+    // await redisClient.del('all_campaigns');
     return sendResponse(res, 200, "Campaign updated successfully.", updatedCampaign);
   } catch (error) {
     return errReturned(res, error.message);
@@ -207,7 +207,7 @@ exports.deleteCampaign = async (req, res) => {
     }
 
     await Campaign.findByIdAndDelete(req.params.id);
-    await redisClient.del('all_campaigns');
+    // await redisClient.del('all_campaigns');
     return sendResponse(res, 200, "Campaign deleted successfully.");
   } catch (error) {
     return errReturned(res, error.message);
@@ -254,7 +254,7 @@ exports.activateCampaign = async (req, res) => {
     // Activate the campaign (if the start date is today or in the future, and the end date is in the future)
     campaign.status = 'ACTIVE';
     await campaign.save();
-    await redisClient.del('all_campaigns');
+    // await redisClient.del('all_campaigns');
 
     // Check if the campaign is a future campaign or a current campaign
     if (campaignStartDate > currentDate) {
@@ -279,7 +279,7 @@ exports.deactivateCampaign = async (req, res) => {
 
     campaign.status = 'INACTIVE';
     await campaign.save();
-    await redisClient.del('all_campaigns');
+    // await redisClient.del('all_campaigns');
 
     return sendResponse(res, 200, "Campaign deactivated successfully.", campaign);
   } catch (error) {

@@ -1,5 +1,6 @@
 // controllers/blogController.js
 const Blog = require("../../lib/schema/blog.schema");
+const Comment = require('../../lib/schema/comment.schema'); // ensure comment model is registered
 const { sendResponse, errReturned } = require("../../lib/utils/dto");
 
 exports.createBlog = async (req, res) => {
@@ -29,7 +30,7 @@ exports.getBlogById = async (req, res) => {
   } catch (error) {
     return errReturned(res, error.message);
   }
-};
+}
 
 exports.updateBlog = async (req, res) => {
   try {

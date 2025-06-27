@@ -5,7 +5,7 @@ const USER = require("../../lib/schema/users.schema");
 const mongoose = require('mongoose');
 
 
-const redisClient = require('../../config/redis'); // Adjust the path based on your file structure
+// const redisClient = require('../../config/redis'); // Adjust the path based on your file structure
 
 
 require("dotenv").config();
@@ -244,7 +244,7 @@ const removeFLWFromTeam = async (teamId, flwId) => {
 
   team.flws = team.flws.filter(flw => flw.toString() !== flwId);
   await team.save();
-  await redisClient.del('all_teams'); // Invalidate cache
+  // await redisClient.del('all_teams'); // Invalidate cache
 };
 
 
@@ -479,23 +479,23 @@ const handleAICUpdate = async (updatedProfile, value) => {
 
 const invalidateCaches = async (currentUser, updatedProfile) => {
   if (currentUser.role !== updatedProfile.role) {
-    await redisClient.del('flw_list');
-    await redisClient.del('ucmo_list');
-    await redisClient.del('admin_list');
-    await redisClient.del('aic_list');
+    // await redisClient.del('flw_list');
+    // await redisClient.del('ucmo_list');
+    // await redisClient.del('admin_list');
+    // await redisClient.del('aic_list');
   } else {
     switch (updatedProfile.role) {
       case 'FLW':
-        await redisClient.del('flw_list');
+        // await redisClient.del('flw_list');
         break;
       case 'UCMO':
-        await redisClient.del('ucmo_list');
+        // await redisClient.del('ucmo_list');
         break;
       case 'ADMIN':
-        await redisClient.del('admin_list');
+        // await redisClient.del('admin_list');
         break;
       case 'AIC':
-        await redisClient.del('aic_list');
+        // await redisClient.del('aic_list');
         break;
       default:
         break;
@@ -1155,7 +1155,7 @@ exports.addUmco = async (req, res) => {
   try {
     const result = await addUserWithRole(req, res, "UCMO");
     if (result) {
-      await redisClient.del('ucmo_list');
+      // await redisClient.del('ucmo_list');
     }
     return result; // Return the result or a relevant response
   } catch (error) {
@@ -1170,7 +1170,7 @@ exports.addAic = async (req, res) => {
     // }
     const result = await addUserWithRole(req, res, "AIC");
     if (result) {
-      await redisClient.del('aic_list');
+      // await redisClient.del('aic_list');
     }
     return result; // Return the result or a relevant response
   } catch (error) {
@@ -1185,7 +1185,7 @@ exports.addFlw = async (req, res) => {
     // }
     const result = await addUserWithRole(req, res, "FLW");
     if (result) {
-      await redisClient.del('flw_list');
+      // await redisClient.del('flw_list');
     }
     return result; // Return the result or a relevant response
   } catch (error) {

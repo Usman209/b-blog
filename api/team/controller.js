@@ -1,6 +1,6 @@
 const Team = require('../../lib/schema/team.schema');
 const USER = require('../../lib/schema/users.schema');
-const redisClient = require("../../config/redis");
+// const redisClient = require("../../config/redis");
 const mongoose = require('mongoose');
 
 
@@ -30,7 +30,7 @@ exports.addFLWToTeam = async (req, res) => {
       team.flws.push(flwId);
       await team.save();
 
-      await redisClient.del('all_teams'); // Invalidate cache
+      // await redisClient.del('all_teams'); // Invalidate cache
       return sendResponse(res, 200, "FLW added to team successfully.", team);
     } else {
       return errReturned(res, "FLW is already in this team.");
@@ -59,7 +59,7 @@ exports.removeFLWFromTeam = async (req, res) => {
     team.flws = team.flws.filter(flw => flw.toString() !== flwId);
     await team.save();
 
-    await redisClient.del('all_teams'); // Invalidate cache
+    // await redisClient.del('all_teams'); // Invalidate cache
     return sendResponse(res, 200, "FLW removed from team successfully.", team);
   } catch (error) {
     return errReturned(res, error.message);
@@ -158,8 +158,8 @@ exports.createTeam = async (req, res) => {
     }
 
     // Invalidate cache
-    await redisClient.del('all_teams');
-    await redisClient.del('flw_list');
+    // await redisClient.del('all_teams');
+    // await redisClient.del('flw_list');
 
     return sendResponse(res, 201, "Team created and users updated with UCmo successfully.", savedTeam);
   } catch (error) {
@@ -274,13 +274,13 @@ exports.getAllFixedTeams = async (req, res) => {
 
 exports.getAllTeams = async (req, res) => {
   try {
-    const cachedTeams = await redisClient.get('all_teams');
+    // const cachedTeams = await redisClient.get('all_teams');
     if (cachedTeams) {
       return sendResponse(res, 200, "Teams fetched successfully.", JSON.parse(cachedTeams));
     }
 
     const teams = await Team.find().populate('flws createdBy');
-    await redisClient.set('all_teams', JSON.stringify(teams)); // Cache the result
+    // await redisClient.set('all_teams', JSON.stringify(teams)); // Cache the result
     return sendResponse(res, 200, "Teams fetched successfully.", teams);
   } catch (error) {
     return errReturned(res, error.message);
@@ -497,8 +497,8 @@ exports.updateTeam = async (req, res) => {
     }
 
     // Cache invalidation: Ensure that caches are cleared after successful update
-    await redisClient.del('all_teams');
-    await redisClient.del('flw_list');
+    // await redisClient.del('all_teams');
+    // await redisClient.del('flw_list');
 
     return sendResponse(res, 200, "Team updated successfully.", updatedTeam);
 
@@ -539,8 +539,8 @@ exports.deleteTeam = async (req, res) => {
     }
 
     // Invalidate cache
-    await redisClient.del('all_teams'); // Clear the cache for all teams
-    await redisClient.del('flw_list');  // Clear the cache for field workers
+    // await redisClient.del('all_teams'); // Clear the cache for all teams
+    // await redisClient.del('flw_list');  // Clear the cache for field workers
 
     // Respond with success
     return sendResponse(res, 200, "Team deleted successfully.");
