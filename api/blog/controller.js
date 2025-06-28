@@ -9,7 +9,7 @@ exports.createBlog = async (req, res) => {
   try {
     const blogData = {
       ...req.body,
-      author: req.user._id, // enforce logged-in user as author
+      author: req.user.id, // enforce logged-in user as author
     };
     const blog = new Blog(blogData);
     const savedBlog = await blog.save();
@@ -24,7 +24,7 @@ exports.getAllBlogs = async (req, res) => {
   try {
     const user = req.user;
 
-    const filter = { createdBy: new mongoose.Types.ObjectId(user.id) };
+    const filter = { author: new mongoose.Types.ObjectId(user.id) };
 
     const blogs = await Blog.find(filter)
       .sort({ createdAt: -1 })
@@ -62,7 +62,7 @@ exports.updateBlog = async (req, res) => {
     const blog = await Blog.findById(req.params.id);
     if (!blog) return errReturned(res, "Blog not found.");
 
-    if ( blog?.createdBy.toString() !== req?.user?.id) {
+    if ( blog?.author.toString() !== req?.user?.id) {
       return errReturned(res, "Unauthorized to update this blog.");
     }
 
@@ -84,7 +84,7 @@ exports.deleteBlog = async (req, res) => {
     const blog = await Blog.findById(req.params.id);
     if (!blog) return errReturned(res, "Blog not found.");
 
-    if (req.user.role !== 'ADMIN' && blog.author.toString() !== req.user._id) {
+    if (blog.author.toString() !== req.user.id) {
       return errReturned(res, "Unauthorized to delete this blog.");
     }
 
@@ -101,13 +101,14 @@ exports.getPublicBlogs = async (req, res) => {
   try {
     const blogs = await Blog.find()
       .sort({ createdAt: -1 })
-      .populate("author");
+      .populate("author", "firstName lastName"); // ✅ only get necessary fields
 
     return sendResponse(res, 200, "Public blogs retrieved successfully.", blogs);
   } catch (error) {
     return errReturned(res, error.message);
   }
 };
+
 
 
 exports.getPublicBlogById = async (req, res) => {
