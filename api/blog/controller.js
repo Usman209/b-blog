@@ -99,15 +99,23 @@ exports.deleteBlog = async (req, res) => {
 // Public blogs list (no auth, no filter)
 exports.getPublicBlogs = async (req, res) => {
   try {
+    const page = parseInt(req.query.page || '1');
+    const limit = parseInt(req.query.limit || '10');
+    const skip = (page - 1) * limit;
+
     const blogs = await Blog.find()
       .sort({ createdAt: -1 })
-      .populate("author", "firstName lastName"); // ✅ only get necessary fields
+      .skip(skip)
+      .limit(limit)
+      .populate("author", "firstName lastName");
 
     return sendResponse(res, 200, "Public blogs retrieved successfully.", blogs);
   } catch (error) {
     return errReturned(res, error.message);
   }
 };
+
+
 
 
 
