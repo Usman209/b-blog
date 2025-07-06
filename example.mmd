@@ -1,0 +1,19 @@
+%% graph TD
+%%   A[Christmas] -->|Get money| B(Go shopping)
+%%   B --> C{Let me think}
+%%   C -->|One| D[Laptop]
+%%   C -->|Two| E[iPhone]
+%%   C -->|Three| F[fa:fa-car Car]
+%%   B -->|welcome| G[code.rog]
+
+
+graph TD
+
+A[start]-->|level| B(level2)
+B-->C{condtion}
+C-->|true|D[true]
+C-->|false|F[false]
+C -->|Three| E{fa:fa-car vehicle}
+E-->|bus|G[bus]
+E-->|car|H[car]
+G-->|try|D

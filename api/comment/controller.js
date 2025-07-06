@@ -1,18 +1,41 @@
 
 
 // controllers/commentController.js
+const blogSchema = require("../../lib/schema/blog.schema");
 const Comment = require("../../lib/schema/comment.schema");
 const { sendResponse, errReturned } = require("../../lib/utils/dto");
 
+
+// controller.js
 exports.createComment = async (req, res) => {
   try {
-    const comment = new Comment(req.body);
-    const savedComment = await comment.save();
-    return sendResponse(res, 201, "Comment created successfully.", savedComment);
+    const userId = req.user.id;
+    const { content, blog } = req.body;
+
+    if (!content || !blog) return errReturned(res, "Content and blog ID are required");
+
+    // 1. Create the comment
+    const comment = await Comment.create({
+      content,
+      blog,
+      author: userId
+    });
+
+    // 2. Push comment ID to blog
+    await blogSchema.findByIdAndUpdate(blog, {
+      $push: { comments: comment._id }
+    });
+
+    // 3. Populate author
+    const populated = await comment.populate("author", "firstName lastName");
+
+    return sendResponse(res, 201, "Comment created successfully.", populated);
   } catch (error) {
+    console.error("[createComment]", error);
     return errReturned(res, error.message);
   }
 };
+
 
 exports.getAllComments = async (req, res) => {
   try {

@@ -14,6 +14,11 @@ router.get('/public/:id', Controller.getPublicBlogById);
 router.get("/:id", authenticateAndAuthorize(["USER", "ADMIN", "MANAGER"]), Controller.getBlogById);
 
 
+router.patch("/:id/like",authenticateAndAuthorize(["USER", "ADMIN", "MANAGER"]), Controller.likeBlog);
+router.patch("/:id/dislike",authenticateAndAuthorize(["USER", "ADMIN", "MANAGER"]), Controller.dislikeBlog);
+
+
+
 
 
 

@@ -24,11 +24,17 @@ exports.getAllBlogs = async (req, res) => {
   try {
     const user = req.user;
 
+    const page = parseInt(req.query.page || '1');
+    const limit = parseInt(req.query.limit || '10');
+    const skip = (page - 1) * limit;
+
     const filter = { author: new mongoose.Types.ObjectId(user.id) };
 
     const blogs = await Blog.find(filter)
       .sort({ createdAt: -1 })
-      .populate("author")
+      .skip(skip)
+      .limit(limit)
+      .populate("author", "firstName lastName")
       .populate("comments");
 
     return sendResponse(res, 200, "Blogs retrieved successfully.", blogs);
@@ -38,15 +44,19 @@ exports.getAllBlogs = async (req, res) => {
 };
 
 
+
 // 📄 GET BLOG by ID
 exports.getBlogById = async (req, res) => {
-      console.log('here ==========',req.params.id);
-
   try {
-    
     const blog = await Blog.findById(req.params.id)
-      .populate("author")
-      .populate("comments");
+      .populate("author", "firstName lastName") // ✅ populate blog author with selected fields
+      .populate({
+        path: "comments",
+        populate: {
+          path: "author",
+          select: "firstName lastName"           // ✅ populate comment authors
+        }
+      });
 
     if (!blog) return errReturned(res, "Blog not found.");
     return sendResponse(res, 200, "Blog retrieved successfully.", blog);
@@ -54,6 +64,7 @@ exports.getBlogById = async (req, res) => {
     return errReturned(res, error.message);
   }
 };
+
 
 // 🔒 UPDATE BLOG (Only admin or owner can update)
 exports.updateBlog = async (req, res) => {
@@ -99,10 +110,13 @@ exports.deleteBlog = async (req, res) => {
 // Public blogs list (no auth, no filter)
 exports.getPublicBlogs = async (req, res) => {
   try {
+    
     const page = parseInt(req.query.page || '1');
     const limit = parseInt(req.query.limit || '10');
     const skip = (page - 1) * limit;
 
+        const blogs1 = await Blog.find()
+        
     const blogs = await Blog.find()
       .sort({ createdAt: -1 })
       .skip(skip)
@@ -121,16 +135,97 @@ exports.getPublicBlogs = async (req, res) => {
 
 exports.getPublicBlogById = async (req, res) => {
   try {
-    console.log('pk===========');
-    
     const blog = await Blog.findById(req.params.id)
-      .populate("author")
-      .populate("comments");
+      .populate('author', 'firstName lastName')         // populate blog author
+      .populate({
+        path: 'comments',
+        populate: {
+          path: 'author',
+          select: 'firstName lastName'                  // ✅ populate each comment's author
+        }
+      });
 
-    if (!blog) return errReturned(res, "Blog not found.");
-    
-    return sendResponse(res, 200, "Public blog retrieved successfully.", blog);
-  } catch (error) {
-    return errReturned(res, error.message);
+    if (!blog) return errReturned(res, 'Blog not found');
+    return sendResponse(res, 200, 'Blog fetched', blog);
+  } catch (err) {
+    console.log(err);
+    return errReturned(res, err.message);
   }
 };
+
+
+
+
+// PATCH /api/blogs/:id/like
+exports.likeBlog = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const blogId = req.params.id;
+
+    const blog = await Blog.findById(blogId);
+    if (!blog) return sendResponse(res, 404, "Blog not found");
+
+    // Ensure arrays are initialized
+    blog.reactions.likes = blog.reactions.likes || [];
+    blog.reactions.dislikes = blog.reactions.dislikes || [];
+
+    const liked = blog.reactions.likes.includes(userId);
+    const disliked = blog.reactions.dislikes.includes(userId);
+
+    if (liked) {
+      // Remove like (toggle off)
+      blog.reactions.likes.pull(userId);
+    } else {
+      // Add like and remove from dislikes
+      blog.reactions.likes.push(userId);
+      if (disliked) {
+        blog.reactions.dislikes.pull(userId);
+      }
+    }
+
+    await blog.save();
+    return sendResponse(res, 200, "Like updated", blog);
+  } catch (err) {
+    return errReturned(res, err.message);
+  }
+};
+
+
+
+// PATCH /api/blogs/:id/dislike
+exports.dislikeBlog = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const blogId = req.params.id;
+
+    const blog = await Blog.findById(blogId);
+    if (!blog) return sendResponse(res, 404, "Blog not found");
+
+    // Ensure arrays are initialized
+    blog.reactions.likes = blog.reactions.likes || [];
+    blog.reactions.dislikes = blog.reactions.dislikes || [];
+
+    const liked = blog.reactions.likes.includes(userId);
+    const disliked = blog.reactions.dislikes.includes(userId);
+
+    if (disliked) {
+      // Remove dislike (toggle off)
+      blog.reactions.dislikes.pull(userId);
+    } else {
+      // Add dislike and remove from likes
+      blog.reactions.dislikes.push(userId);
+      if (liked) {
+        blog.reactions.likes.pull(userId);
+      }
+    }
+
+    await blog.save();
+    return sendResponse(res, 200, "Dislike updated", blog);
+  } catch (err) {
+    return errReturned(res, err.message);
+  }
+};
+
+
+
+

@@ -13,6 +13,8 @@ module.exports = (app) => {
   app.use('/api/survey', require('./api/survey'));
 
   app.use('/api/blog', require('./api/blog'));
+    app.use('/api/comment', require('./api/comment'));
+
 
 
   app.use('/api/district', require('./api/district'));
