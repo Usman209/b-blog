@@ -1,19 +1,289 @@
-%% graph TD
-%%   A[Christmas] -->|Get money| B(Go shopping)
-%%   B --> C{Let me think}
-%%   C -->|One| D[Laptop]
-%%   C -->|Two| E[iPhone]
-%%   C -->|Three| F[fa:fa-car Car]
-%%   B -->|welcome| G[code.rog]
-
-
 graph TD
-
-A[start]-->|level| B(level2)
-B-->C{condtion}
-C-->|true|D[true]
-C-->|false|F[false]
-C -->|Three| E{fa:fa-car vehicle}
-E-->|bus|G[bus]
-E-->|car|H[car]
-G-->|try|D
+    subgraph "1. COMPUTER FUNDAMENTALS (Week 1-2)"
+        CF1[1.1 Hardware Basics<br/>- CPU, RAM, Storage<br/>- Input/Output devices<br/>- Operating System basics]
+        CF2[1.2 Software Introduction<br/>- System vs Application software<br/>- Installing/Uninstalling programs<br/>- File types and extensions]
+        CF3[1.3 Internet & Web<br/>- How internet works<br/>- Browsers and search engines<br/>- URLs, domains, websites]
+        CF4[1.4 File Management<br/>- Creating folders<br/>- Organizing files<br/>- Backup basics]
+        CF1 --> CF2 --> CF3 --> CF4
+    end
+    
+    subgraph "2. WEB DEVELOPMENT BASICS (Week 3-6)"
+        WD1[2.1 HTML Foundations<br/>- Structure and syntax<br/>- Tags, elements, attributes<br/>- Semantic HTML]
+        WD2[2.2 HTML Forms<br/>- Input types<br/>- Form validation<br/>- Accessibility]
+        WD3[2.3 CSS Fundamentals<br/>- Selectors and properties<br/>- Box model<br/>- Colors and fonts]
+        WD4[2.4 CSS Layout<br/>- Flexbox<br/>- Grid basics<br/>- Responsive design]
+        WD5[2.5 Basic JavaScript<br/>- Variables and data types<br/>- DOM manipulation<br/>- Event handling]
+        WD1 --> WD2 --> WD3 --> WD4 --> WD5
+    end
+    
+    subgraph "3. PROGRAMMING FOUNDATIONS (Week 7-10)"
+        PF1[3.1 Programming Logic<br/>- Problem-solving approach<br/>- Breaking down problems<br/>- Pseudocode]
+        PF2[3.2 Flow Diagrams<br/>- Flowchart symbols<br/>- Decision structures<br/>- Loop structures]
+        PF3[3.3 Python/JavaScript Basics<br/>- Variables and data types<br/>- Operators<br/>- Input/Output]
+        PF4[3.4 Control Structures<br/>- If/else statements<br/>- Loops (for, while)<br/>- Switch/case]
+        PF5[3.5 Functions<br/>- Function definition<br/>- Parameters and return values<br/>- Scope and local variables]
+        PF1 --> PF2 --> PF3 --> PF4 --> PF5
+    end
+    
+    subgraph "4. ADVANCED PROGRAMMING (Week 11-14)"graph TD
+    subgraph "1. COMPUTER FUNDAMENTALS (Week 1-2)"
+        CF1[1.1 Hardware Basics<br/>- CPU, RAM, Storage<br/>- Input/Output devices<br/>- Operating System basics]
+        CF2[1.2 Software Introduction<br/>- System vs Application software<br/>- Installing/Uninstalling programs<br/>- File types and extensions]
+        CF3[1.3 Internet & Web<br/>- How internet works<br/>- Browsers and search engines<br/>- URLs, domains, websites]
+        CF4[1.4 File Management<br/>- Creating folders<br/>- Organizing files<br/>- Backup basics]
+        CF1 --> CF2 --> CF3 --> CF4
+    end
+    
+    subgraph "2. WEB DEVELOPMENT BASICS (Week 3-6)"
+        WD1[2.1 HTML Foundations<br/>- Structure and syntax<br/>- Tags, elements, attributes<br/>- Semantic HTML]
+        WD2[2.2 HTML Forms<br/>- Input types<br/>- Form validation<br/>- Accessibility]
+        WD3[2.3 CSS Fundamentals<br/>- Selectors and properties<br/>- Box model<br/>- Colors and fonts]
+        WD4[2.4 CSS Layout<br/>- Flexbox<br/>- Grid basics<br/>- Responsive design]
+        WD5[2.5 Basic JavaScript<br/>- Variables and data types<br/>- DOM manipulation<br/>- Event handling]
+        WD1 --> WD2 --> WD3 --> WD4 --> WD5
+    end
+    
+    subgraph "3. PROGRAMMING FOUNDATIONS (Week 7-10)"
+        PF1[3.1 Programming Logic<br/>- Problem-solving approach<br/>- Breaking down problems<br/>- Pseudocode]
+        PF2[3.2 Flow Diagrams<br/>- Flowchart symbols<br/>- Decision structures<br/>- Loop structures]
+        PF3[3.3 Python/JavaScript Basics<br/>- Variables and data types<br/>- Operators<br/>- Input/Output]
+        PF4[3.4 Control Structures<br/>- If/else statements<br/>- Loops (for, while)<br/>- Switch/case]
+        PF5[3.5 Functions<br/>- Function definition<br/>- Parameters and return values<br/>- Scope and local variables]
+        PF1 --> PF2 --> PF3 --> PF4 --> PF5
+    end
+    
+    subgraph "4. ADVANCED PROGRAMMING (Week 11-14)"
+        AP1[4.1 Data Structures<br/>- Arrays/Lists<br/>- Dictionaries/Objects<br/>- Strings manipulation]
+        AP2[4.2 Object-Oriented Programming<br/>- Classes and objects<br/>- Inheritance<br/>- Encapsulation]
+        AP3[4.3 Error Handling<br/>- Try/catch blocks<br/>- Debugging techniques<br/>- Testing basics]
+        AP4[4.4 File Operations<br/>- Reading/writing files<br/>- JSON data handling<br/>- CSV processing]
+        AP1 --> AP2 --> AP3 --> AP4
+    end
+    
+    subgraph "5. DATABASE & BACKEND (Week 15-18)"
+        DB1[5.1 Database Concepts<br/>- What is a database<br/>- Tables, rows, columns<br/>- Primary keys]
+        DB2[5.2 SQL Basics<br/>- SELECT, INSERT, UPDATE, DELETE<br/>- WHERE clauses<br/>- Basic joins]
+        DB3[5.3 Backend Introduction<br/>- Client-server architecture<br/>- HTTP methods<br/>- REST APIs]
+        DB4[5.4 Backend Development<br/>- Setting up server<br/>- Creating endpoints<br/>- Connecting to database]
+        DB1 --> DB2 --> DB3 --> DB4
+    end
+    
+    subgraph "6. FULL-STACK INTEGRATION (Week 19-22)"
+        FS1[6.1 Frontend CRUD<br/>- Create, Read, Update, Delete<br/>- Form handling<br/>- Data display]
+        FS2[6.2 Backend CRUD<br/>- API endpoints<br/>- Database operations<br/>- Data validation]
+        FS3[6.3 Frontend-Backend Connection<br/>- Making API calls<br/>- Handling responses<br/>- Error handling]
+        FS4[6.4 Testing Integration<br/>- Testing API endpoints<br/>- Frontend testing<br/>- End-to-end testing]
+        FS1 --> FS2 --> FS3 --> FS4
+    end
+    
+    subgraph "7. SECURITY & AUTH (Week 23-24)"
+        SA1[7.1 Authentication<br/>- Login/logout system<br/>- Password hashing<br/>- Session management]
+        SA2[7.2 Authorization<br/>- User roles<br/>- Permission systems<br/>- Route protection]
+        SA3[7.3 Security Best Practices<br/>- Input validation<br/>- HTTPS<br/>- Basic security headers]
+        SA1 --> SA2 --> SA3
+    end
+    
+    subgraph "8. FINAL PROJECT & DEPLOYMENT (Week 25-26)"
+        FP1[8.1 Project Planning<br/>- Requirements gathering<br/>- Design mockups<br/>- Database schema]
+        FP2[8.2 Development<br/>- Building full application<br/>- Testing features<br/>- Code optimization]
+        FP3[8.3 Deployment<br/>- Hosting options<br/>- Environment setup<br/>- Going live]
+        FP1 --> FP2 --> FP3
+    end
+    
+    classDef week1 fill:#e3f2fd
+    classDef week2 fill:#f3e5f5
+    classDef week3 fill:#e8f5e8
+    classDef week4 fill:#fff3e0
+    classDef week5 fill:#fce4ec
+    classDef week6 fill:#f1f8e9
+    classDef week7 fill:#ffebee
+    classDef week8 fill:#e0f2f1graph TD
+    subgraph "1. COMPUTER FUNDAMENTALS (Week 1-2)"
+        CF1[1.1 Hardware Basics<br/>- CPU, RAM, Storage<br/>- Input/Output devices<br/>- Operating System basics]
+        CF2[1.2 Software Introduction<br/>- System vs Application software<br/>- Installing/Uninstalling programs<br/>- File types and extensions]
+        CF3[1.3 Internet & Web<br/>- How internet works<br/>- Browsers and search engines<br/>- URLs, domains, websites]
+        CF4[1.4 File Management<br/>- Creating folders<br/>- Organizing files<br/>- Backup basics]
+        CF1 --> CF2 --> CF3 --> CF4
+    end
+    
+    subgraph "2. WEB DEVELOPMENT BASICS (Week 3-6)"
+        WD1[2.1 HTML Foundations<br/>- Structure and syntax<br/>- Tags, elements, attributes<br/>- Semantic HTML]
+        WD2[2.2 HTML Forms<br/>- Input types<br/>- Form validation<br/>- Accessibility]
+        WD3[2.3 CSS Fundamentals<br/>- Selectors and properties<br/>- Box model<br/>- Colors and fonts]
+        WD4[2.4 CSS Layout<br/>- Flexbox<br/>- Grid basics<br/>- Responsive design]
+        WD5[2.5 Basic JavaScript<br/>- Variables and data types<br/>- DOM manipulation<br/>- Event handling]
+        WD1 --> WD2 --> WD3 --> WD4 --> WD5
+    end
+    
+    subgraph "3. PROGRAMMING FOUNDATIONS (Week 7-10)"
+        PF1[3.1 Programming Logic<br/>- Problem-solving approach<br/>- Breaking down problems<br/>- Pseudocode]
+        PF2[3.2 Flow Diagrams<br/>- Flowchart symbols<br/>- Decision structures<br/>- Loop structures]
+        PF3[3.3 Python/JavaScript Basics<br/>- Variables and data types<br/>- Operators<br/>- Input/Output]
+        PF4[3.4 Control Structures<br/>- If/else statements<br/>- Loops (for, while)<br/>- Switch/case]
+        PF5[3.5 Functions<br/>- Function definition<br/>- Parameters and return values<br/>- Scope and local variables]
+        PF1 --> PF2 --> PF3 --> PF4 --> PF5
+    end
+    
+    subgraph "4. ADVANCED PROGRAMMING (Week 11-14)"
+        AP1[4.1 Data Structures<br/>- Arrays/Lists<br/>- Dictionaries/Objects<br/>- Strings manipulation]
+        AP2[4.2 Object-Oriented Programming<br/>- Classes and objects<br/>- Inheritance<br/>- Encapsulation]
+        AP3[4.3 Error Handling<br/>- Try/catch blocks<br/>- Debugging techniques<br/>- Testing basics]
+        AP4[4.4 File Operations<br/>- Reading/writing files<br/>- JSON data handling<br/>- CSV processing]
+        AP1 --> AP2 --> AP3 --> AP4
+    end
+    
+    subgraph "5. DATABASE & BACKEND (Week 15-18)"
+        DB1[5.1 Database Concepts<br/>- What is a database<br/>- Tables, rows, columns<br/>- Primary keys]
+        DB2[5.2 SQL Basics<br/>- SELECT, INSERT, UPDATE, DELETE<br/>- WHERE clauses<br/>- Basic joins]
+        DB3[5.3 Backend Introduction<br/>- Client-server architecture<br/>- HTTP methods<br/>- REST APIs]
+        DB4[5.4 Backend Development<br/>- Setting up server<br/>- Creating endpoints<br/>- Connecting to database]
+        DB1 --> DB2 --> DB3 --> DB4
+    end
+    
+    subgraph "6. FULL-STACK INTEGRATION (Week 19-22)"
+        FS1[6.1 Frontend CRUD<br/>- Create, Read, Update, Delete<br/>- Form handling<br/>- Data display]
+        FS2[6.2 Backend CRUD<br/>- API endpoints<br/>- Database operations<br/>- Data validation]
+        FS3[6.3 Frontend-Backend Connection<br/>- Making API calls<br/>- Handling responses<br/>- Error handling]
+        FS4[6.4 Testing Integration<br/>- Testing API endpoints<br/>- Frontend testing<br/>- End-to-end testing]
+        FS1 --> FS2 --> FS3 --> FS4
+    end
+    
+    subgraph "7. SECURITY & AUTH (Week 23-24)"
+        SA1[7.1 Authentication<br/>- Login/logout system<br/>- Password hashing<br/>- Session management]
+        SA2[7.2 Authorization<br/>- User roles<br/>- Permission systems<br/>- Route protection]
+        SA3[7.3 Security Best Practices<br/>- Input validation<br/>- HTTPS<br/>- Basic security headers]
+        SA1 --> SA2 --> SA3
+    end
+    
+    subgraph "8. FINAL PROJECT & DEPLOYMENT (Week 25-26)"
+        FP1[8.1 Project Planning<br/>- Requirements gathering<br/>- Design mockups<br/>- Database schema]
+        FP2[8.2 Development<br/>- Building full application<br/>- Testing features<br/>- Code optimization]
+        FP3[8.3 Deployment<br/>- Hosting options<br/>- Environment setup<br/>- Going live]
+        FP1 --> FP2 --> FP3
+    end
+    
+    classDef week1 fill:#e3f2fd
+    classDef week2 fill:#f3e5f5
+    classDef week3 fill:#e8f5e8
+    classDef week4 fill:#fff3e0
+    classDef week5 fill:#fce4ec
+    classDef week6 fill:#f1f8e9
+    classDef week7 fill:#ffebee
+    classDef week8 fill:#e0f2f1graph TD
+    subgraph "1. COMPUTER FUNDAMENTALS (Week 1-2)"
+        CF1[1.1 Hardware Basics<br/>- CPU, RAM, Storage<br/>- Input/Output devices<br/>- Operating System basics]
+        CF2[1.2 Software Introduction<br/>- System vs Application software<br/>- Installing/Uninstalling programs<br/>- File types and extensions]
+        CF3[1.3 Internet & Web<br/>- How internet works<br/>- Browsers and search engines<br/>- URLs, domains, websites]
+        CF4[1.4 File Management<br/>- Creating folders<br/>- Organizing files<br/>- Backup basics]
+        CF1 --> CF2 --> CF3 --> CF4
+    end
+    
+    subgraph "2. WEB DEVELOPMENT BASICS (Week 3-6)"
+        WD1[2.1 HTML Foundations<br/>- Structure and syntax<br/>- Tags, elements, attributes<br/>- Semantic HTML]
+        WD2[2.2 HTML Forms<br/>- Input types<br/>- Form validation<br/>- Accessibility]
+        WD3[2.3 CSS Fundamentals<br/>- Selectors and properties<br/>- Box model<br/>- Colors and fonts]
+        WD4[2.4 CSS Layout<br/>- Flexbox<br/>- Grid basics<br/>- Responsive design]
+        WD5[2.5 Basic JavaScript<br/>- Variables and data types<br/>- DOM manipulation<br/>- Event handling]
+        WD1 --> WD2 --> WD3 --> WD4 --> WD5
+    end
+    
+    subgraph "3. PROGRAMMING FOUNDATIONS (Week 7-10)"
+        PF1[3.1 Programming Logic<br/>- Problem-solving approach<br/>- Breaking down problems<br/>- Pseudocode]
+        PF2[3.2 Flow Diagrams<br/>- Flowchart symbols<br/>- Decision structures<br/>- Loop structures]
+        PF3[3.3 Python/JavaScript Basics<br/>- Variables and data types<br/>- Operators<br/>- Input/Output]
+        PF4[3.4 Control Structures<br/>- If/else statements<br/>- Loops (for, while)<br/>- Switch/case]
+        PF5[3.5 Functions<br/>- Function definition<br/>- Parameters and return values<br/>- Scope and local variables]
+        PF1 --> PF2 --> PF3 --> PF4 --> PF5
+    end
+    
+    subgraph "4. ADVANCED PROGRAMMING (Week 11-14)"
+        AP1[4.1 Data Structures<br/>- Arrays/Lists<br/>- Dictionaries/Objects<br/>- Strings manipulation]
+        AP2[4.2 Object-Oriented Programming<br/>- Classes and objects<br/>- Inheritance<br/>- Encapsulation]
+        AP3[4.3 Error Handling<br/>- Try/catch blocks<br/>- Debugging techniques<br/>- Testing basics]
+        AP4[4.4 File Operations<br/>- Reading/writing files<br/>- JSON data handling<br/>- CSV processing]
+        AP1 --> AP2 --> AP3 --> AP4
+    end
+    
+    subgraph "5. DATABASE & BACKEND (Week 15-18)"
+        DB1[5.1 Database Concepts<br/>- What is a database<br/>- Tables, rows, columns<br/>- Primary keys]
+        DB2[5.2 SQL Basics<br/>- SELECT, INSERT, UPDATE, DELETE<br/>- WHERE clauses<br/>- Basic joins]
+        DB3[5.3 Backend Introduction<br/>- Client-server architecture<br/>- HTTP methods<br/>- REST APIs]
+        DB4[5.4 Backend Development<br/>- Setting up server<br/>- Creating endpoints<br/>- Connecting to database]
+        DB1 --> DB2 --> DB3 --> DB4
+    end
+    
+    subgraph "6. FULL-STACK INTEGRATION (Week 19-22)"
+        FS1[6.1 Frontend CRUD<br/>- Create, Read, Update, Delete<br/>- Form handling<br/>- Data display]
+        FS2[6.2 Backend CRUD<br/>- API endpoints<br/>- Database operations<br/>- Data validation]
+        FS3[6.3 Frontend-Backend Connection<br/>- Making API calls<br/>- Handling responses<br/>- Error handling]
+        FS4[6.4 Testing Integration<br/>- Testing API endpoints<br/>- Frontend testing<br/>- End-to-end testing]
+        FS1 --> FS2 --> FS3 --> FS4
+    end
+    
+    subgraph "7. SECURITY & AUTH (Week 23-24)"
+        SA1[7.1 Authentication<br/>- Login/logout system<br/>- Password hashing<br/>- Session management]
+        SA2[7.2 Authorization<br/>- User roles<br/>- Permission systems<br/>- Route protection]
+        SA3[7.3 Security Best Practices<br/>- Input validation<br/>- HTTPS<br/>- Basic security headers]
+        SA1 --> SA2 --> SA3
+    end
+    
+    subgraph "8. FINAL PROJECT & DEPLOYMENT (Week 25-26)"
+        FP1[8.1 Project Planning<br/>- Requirements gathering<br/>- Design mockups<br/>- Database schema]
+        FP2[8.2 Development<br/>- Building full application<br/>- Testing features<br/>- Code optimization]
+        FP3[8.3 Deployment<br/>- Hosting options<br/>- Environment setup<br/>- Going live]
+        FP1 --> FP2 --> FP3
+    end
+    
+    classDef week1 fill:#e3f2fd
+    classDef week2 fill:#f3e5f5
+    classDef week3 fill:#e8f5e8
+    classDef week4 fill:#fff3e0
+    classDef week5 fill:#fce4ec
+    classDef week6 fill:#f1f8e9
+    classDef week7 fill:#ffebee
+    classDef week8 fill:#e0f2f1
+        AP1[4.1 Data Structures<br/>- Arrays/Lists<br/>- Dictionaries/Objects<br/>- Strings manipulation]
+        AP2[4.2 Object-Oriented Programming<br/>- Classes and objects<br/>- Inheritance<br/>- Encapsulation]
+        AP3[4.3 Error Handling<br/>- Try/catch blocks<br/>- Debugging techniques<br/>- Testing basics]
+        AP4[4.4 File Operations<br/>- Reading/writing files<br/>- JSON data handling<br/>- CSV processing]
+        AP1 --> AP2 --> AP3 --> AP4
+    end
+    
+    subgraph "5. DATABASE & BACKEND (Week 15-18)"
+        DB1[5.1 Database Concepts<br/>- What is a database<br/>- Tables, rows, columns<br/>- Primary keys]
+        DB2[5.2 SQL Basics<br/>- SELECT, INSERT, UPDATE, DELETE<br/>- WHERE clauses<br/>- Basic joins]
+        DB3[5.3 Backend Introduction<br/>- Client-server architecture<br/>- HTTP methods<br/>- REST APIs]
+        DB4[5.4 Backend Development<br/>- Setting up server<br/>- Creating endpoints<br/>- Connecting to database]
+        DB1 --> DB2 --> DB3 --> DB4
+    end
+    
+    subgraph "6. FULL-STACK INTEGRATION (Week 19-22)"
+        FS1[6.1 Frontend CRUD<br/>- Create, Read, Update, Delete<br/>- Form handling<br/>- Data display]
+        FS2[6.2 Backend CRUD<br/>- API endpoints<br/>- Database operations<br/>- Data validation]
+        FS3[6.3 Frontend-Backend Connection<br/>- Making API calls<br/>- Handling responses<br/>- Error handling]
+        FS4[6.4 Testing Integration<br/>- Testing API endpoints<br/>- Frontend testing<br/>- End-to-end testing]
+        FS1 --> FS2 --> FS3 --> FS4
+    end
+    
+    subgraph "7. SECURITY & AUTH (Week 23-24)"
+        SA1[7.1 Authentication<br/>- Login/logout system<br/>- Password hashing<br/>- Session management]
+        SA2[7.2 Authorization<br/>- User roles<br/>- Permission systems<br/>- Route protection]
+        SA3[7.3 Security Best Practices<br/>- Input validation<br/>- HTTPS<br/>- Basic security headers]
+        SA1 --> SA2 --> SA3
+    end
+    
+    subgraph "8. FINAL PROJECT & DEPLOYMENT (Week 25-26)"
+        FP1[8.1 Project Planning<br/>- Requirements gathering<br/>- Design mockups<br/>- Database schema]
+        FP2[8.2 Development<br/>- Building full application<br/>- Testing features<br/>- Code optimization]
+        FP3[8.3 Deployment<br/>- Hosting options<br/>- Environment setup<br/>- Going live]
+        FP1 --> FP2 --> FP3
+    end
+    
+    classDef week1 fill:#e3f2fd
+    classDef week2 fill:#f3e5f5
+    classDef week3 fill:#e8f5e8
+    classDef week4 fill:#fff3e0
+    classDef week5 fill:#fce4ec
+    classDef week6 fill:#f1f8e9
+    classDef week7 fill:#ffebee
+    classDef week8 fill:#e0f2f1

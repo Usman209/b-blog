@@ -110,24 +110,30 @@ exports.deleteBlog = async (req, res) => {
 // Public blogs list (no auth, no filter)
 exports.getPublicBlogs = async (req, res) => {
   try {
-    
     const page = parseInt(req.query.page || '1');
     const limit = parseInt(req.query.limit || '10');
     const skip = (page - 1) * limit;
 
-        const blogs1 = await Blog.find()
-        
     const blogs = await Blog.find()
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit)
       .populate("author", "firstName lastName");
 
-    return sendResponse(res, 200, "Public blogs retrieved successfully.", blogs);
+    const enrichedBlogs = blogs.map(blog => {
+      const blogObj = blog.toObject();
+      blogObj.likesCount = blog.reactions?.likes?.length || 0;
+      blogObj.commentsCount = blog.comments?.length || 0;
+      return blogObj;
+    });
+
+    return sendResponse(res, 200, "Public blogs retrieved successfully.", enrichedBlogs);
   } catch (error) {
     return errReturned(res, error.message);
   }
 };
+
+
 
 
 
